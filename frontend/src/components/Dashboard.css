@@ -1,0 +1,85 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+/* Login Container */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* Navigation Bar Styling */
+nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    background-color: #343a40;
+    margin: 0;
+    padding: 10px;
+}
+
+nav li {
+    margin: 0 15px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Content Area */
+.content {
+    padding: 20px;
+}
+
+/* Textarea Styling */
+textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+/* Button Styling */
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Logout Button Styling */
+.logout-button {
+    background-color: #ff4d4d; /* Red background */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px; /* Ensure the button is spaced out properly */
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #d93636; /* Darker red on hover */
+}
