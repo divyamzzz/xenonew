@@ -118,7 +118,21 @@ app.post('/api/customers', async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 });
-
+app.post('/api/orders', async (req, res) => {
+    const { customer_id, order_amount, order_date } = req.body;
+    try {
+        const query = `
+            INSERT INTO orders (customer_id, order_amount, order_date)
+            VALUES ($1, $2, $3)
+            RETURNING *;
+        `;
+        const values = [customer_id, order_amount, order_date];
+        const result = await db.query(query, values);
+        res.status(201).json(result.rows[0]);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
 
 app.post('/api/campaigns', async (req, res) => {
     const { name, audience_size } = req.body;
