@@ -167,7 +167,7 @@ app.post('/api/send-messages', async (req, res) => {
                 VALUES ($1, $2, $3)
                 RETURNING *;
             `;
-            const randomStatus = Math.random() < 0.9 ? 'SENT' : 'FAILED'; // 90% SENT, 10% FAILED
+            const randomStatus = Math.random() < 0.9 ? 'SENT' : 'FAILED'; 
             const result = await db.query(query, [campaign_id, customer.id, randomStatus]);
 
             
@@ -236,17 +236,14 @@ app.get('/api/stats', async (req, res) => {
         res.status(500).json({ error: 'An error occurred while fetching campaign stats.' });
     }
 });
-
 app.post('/api/audience/calculate', async (req, res) => {
     const { conditions } = req.body;
 
-
-    if (!conditions || !Array.isArray(conditions)) {
-        return res.status(400).json({ error: 'Invalid conditions format' });
+    if (!conditions || !Array.isArray(conditions) || conditions.length === 0) {
+        return res.status(400).json({ error: 'Invalid conditions format or no conditions provided' });
     }
 
     try {
-        
         const whereClauses = [];
         const values = [];
 
@@ -257,7 +254,8 @@ app.post('/api/audience/calculate', async (req, res) => {
                 throw new Error('Invalid condition structure');
             }
 
-            const clause = `${logic ? logic + ' ' : ''}${field} ${operator} $${index + 1}`;
+            
+            const clause = `${index > 0 ? `${logic} ` : ''}${field} ${operator} $${index + 1}`;
             whereClauses.push(clause);
             values.push(value);
         });
